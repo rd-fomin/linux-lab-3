@@ -27,15 +27,21 @@ sudo usermod -aG admin root
 Далее выполняем команду sudo chmod +x /usr/share/libpam-script/pam_script_acct:
 ![](images/image_2020-12-24_15-38-56.png)
 ## Часть 2
-Для установки докера были выполнены команды:
-
-``sudo apt update && sudo apt upgrade\n
-sudo apt install apt-transport-https ca-certificates curl software-properties-common\n
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"\n
-sudo apt update && apt-cache policy docker-ce\n
-sudo apt install -y docker-ce``
-Выдача прав пользователю pavel производилась командой:
-
-sudo usermod -aG docker pavel 
+##### Для установки докера были выполнены команды:
+`sudo apt update && sudo apt upgrade`
+`sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"`
+`sudo apt update && apt-cache policy docker-ce`
+`sudo apt install -y docker-ce`
+##### Выдача прав пользователю roman производилась командой:
+`sudo usermod -aG docker roman`
 Чтобы пользовать мог пользоваться основными командами docker'a необходимо установить пакет docker compose, для этого необходимо выполнить следующие команды:
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+`sudo chmod +x /usr/local/bin/docker-compose`
+Попробуем выполнить команды работы с docker'ом:
+![](images/image_2020-12-24_15-53-44.png)
+Для того, чтобы пользователь мог пользоваться docker необходимо его дабавить в группу docker. В файле /etc/groups можно посмотерть у каких пользователей есть права на использование docker.
+![](images/image_2020-12-24_15-59-29.png)
+Попробуем воспользоваться docker от имени позльователя us1
+![](images/image_2020-12-24_16-03-07.png)
